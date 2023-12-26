@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jeu du pendu</title>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="./style.css" />
+    <script src="./index.js" defer></script>
+  </head>
+  <body>
+    <main>
+      <div id="container">
+        <h2>Le jeu du pendu</h2>
+        <p>Veuillez deviner le mot en saisissant une lettre à la fois</p>
+        <div id="word"></div>
+        <input
+          disabled
+          id="letter-input"
+          placeholder="choisissez une lettre"
+          type="text"
+        />
+        <small id="letter-error"></small>
+        <div id="used-letters"><h4>Lettres déjà essayées : </h4><div class="content"></div></div>
+        <div id="penalities"><h4>Nombre de pénalités : </h4><div class="content"></div></div>
+        <button title="" id="start-btn">Commencer</button>
+      </div>
+    </main>
+  </body>
+</html>
