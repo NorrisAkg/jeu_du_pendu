@@ -1,7 +1,3 @@
-// const words = [];
-// function setWords(items) {
-//   items.forEach((item) => words.push(item));
-// }
 $(document).ready(function () {
   console.log("document mounted");
   const words = [
@@ -234,66 +230,3 @@ function startPlaying() {
 
   startButton.attr("disabled", true);
 }
-
-// console.log(randomWord);
-// let randomWordLength = randomWord.length;
-
-// startButton.on("click", function () {
-//   console.log("start");
-//   let randomIndex = Math.floor(Math.random() * totalWords);
-//   // let randomWord = words[randomIndex];
-//   let randomWord = "mandarine";
-
-//   // Add letter places
-//   for (let i = 0; i < randomWord.length; i++) {
-//     wordSpace.append(`<span class='letter letter-${i}'>_</span>`);
-//   }
-
-//   startButton.attr("disabled", true);
-// });
-
-// letterInput.on("input", function (e) {
-//   letterError.css("display", "none");
-//   let letter = e.target.value;
-//   console.log(e.target.value);
-//   if (!letterInAlphabet(letter)) {
-//     letterError
-//       .text("Veuillez taper une lettre valide")
-//       .css("display", "block");
-//     return;
-//   }
-
-//   if (letter) {
-//     console.log(randomWord.indexOf(letter));
-
-//     if (randomWord.includes(letter)) {
-//       if (lettersFound.includes(letter)) {
-//         letterError
-//           .text("Cette lettre a déjà été trouvée")
-//           .css("display", "block");
-//         penalities++;
-//         return;
-//       }
-
-//       const letterIndexes = randomWord
-//         .toLowerCase()
-//         .split("")
-//         .map(function (e, i) {
-//           if (e === letter) return `${i}`;
-//         });
-
-//       letterIndexes.forEach(function (i) {
-//         lettersFound.push(letter);
-//         $(`.letter-${i}`).text(letter);
-//       });
-//     } else {
-//       penalities++;
-//     }
-
-//     console.log(letterIndexes);
-//     console.log(randomWord.indexOf(letter));
-//     console.log(lettersFound);
-//   }
-
-//   checkResult();
-// });
