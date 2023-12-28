@@ -105,7 +105,7 @@
 
 #penalities {
   display: flex;
-  margin: auto;
+  margin: 20px auto 0 auto;
   align-items: center;
   font-size: 20px;
 }
@@ -115,3 +115,47 @@
   margin-left: 20px;
 }
 
+#player-name{
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  width: max-content;
+  /* border: 1px solid red; */
+  padding: 1rem;
+}
+
+#records-table {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* table style */
+
+table {
+  border-collapse: collapse;
+  width: 30rem;
+}
+
+th#id {
+  width: 5%;
+}
+
+th#nb,
+th#temps {
+  width: 20%;
+}
+
+td,
+th {
+  border: 1px solid black;
+}
+
+th#id,
+td.id, td {
+  font-weight: bold;
+  text-align: center;
+}

@@ -24,6 +24,13 @@ $(document).ready(function () {
   const letterInput = $("#letter-input");
   const startButton = $("#start-btn");
   const letterError = $("#letter-error");
+  const playerNameDiv = $("#player-name");
+  const nameInput = $("#username");
+  const userSaveBtn = $("#btn-validate")
+  const recordsTableDiv = $("#records-table");
+  const messageRecordsParagr = $("#records-message");
+  let records = []
+
   // Get word div
   const wordSpace = $("#word");
   let choosenLetter = "";
@@ -48,6 +55,49 @@ $(document).ready(function () {
     startButton.attr("disabled", true);
     startButton.css("background-color", "rgba(255, 255, 255, 0.6)");
     startButton.css("background-color:", "rgba(255, 255, 255, 0.6)");
+  }
+
+  class Player {
+    constructor(name, nbOfTrials = 0, elapsedTime = 0) {
+      this.name = name;
+      this.nbOfTrials = nbOfTrials;
+      this.elapsedTime = elapsedTime;
+    }
+  }
+
+  function previewRecords() {
+    const player = new Player(nameInput.value);
+    playerNameDiv.css("display", "none");
+    recordsTableDiv.css("display", "flex");
+    messageRecordsParagr.text("Meilleurs scores !!!");
+    console.log(records);
+
+    // Reset variables
+    sec = 0;
+    elapsedTime = 0;
+    nbOfTrials = 0;
+
+    if (localStorage.getItem("records") == null) {
+      records.push(player);
+      console.log(records);
+      localStorage.setItem("records", JSON.stringify(records));
+    } else {
+      records = [];
+      console.log(records);
+      persistedRecords = JSON.parse(localStorage.getItem("records"));
+      console.log(records);
+      records = [...persistedRecords, player];
+      console.log(records);
+      localStorage.setItem("records", JSON.stringify(records));
+    }
+
+    sortRecords(records);
+    previewRank(orderedRecords, player);
+    console.log(orderedRecords);
+    fillRecordsTable(orderedRecords);
+    records = [];
+    orderedRecords = [];
+    console.log(records);
   }
 
   // Display initial penalities count
@@ -115,11 +165,6 @@ $(document).ready(function () {
       .empty()
       .append(`<span>${lettersUsed.join("  ")}</span>`);
 
-    // lettersUsed.forEach(element => {
-    //   console.log(element)
-    //   $("#used-letters").append(`<span>${element}</span>`)
-    // });
-
     console.log(letterIndexes);
     console.log(randomWord.indexOf(letter));
     console.log(lettersFound);
@@ -145,16 +190,18 @@ $(document).ready(function () {
     console.log(lettersFound.length);
     console.log(lettersFound.length === randomWord.length);
     if (penalities === maxPenalities) {
-      // Player loses
+      // TODO Player loses
       $("#word").css("color", "rgb(192, 30, 30)");
       letterInput.val("");
       letterInput.attr("disabled", true);
     } else {
       if (lettersFound.length === randomWord.length) {
-        // Player win
+        // TODO Player win
         $("#word").css("color", "rgb(56, 187, 56)");
+        playerNameDiv.css("display", "flex")
         letterInput.val("");
         letterInput.attr("disabled", true);
+        userSaveBtn.on('click', previewRecords)
       }
     }
   }

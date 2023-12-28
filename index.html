@@ -22,12 +22,40 @@
           disabled
           id="letter-input"
           placeholder="choisissez une lettre"
+          maxlength="1"
           type="text"
         />
         <small id="letter-error"></small>
-        <div id="used-letters"><h4>Lettres déjà essayées : </h4><div class="content"></div></div>
-        <div id="penalities"><h4>Nombre de pénalités : </h4><div class="content"></div></div>
+        <div id="used-letters">
+          <h4>Lettres déjà essayées :</h4>
+          <div class="content"></div>
+        </div>
+        <div id="penalities">
+          <h4>Nombre de pénalités :</h4>
+          <div class="content"></div>
+        </div>
         <button title="" id="start-btn">Commencer</button>
+
+        <div id="player-name">
+          <h3>Entrez votre nom</h3>
+          <div>
+             <input placeholder="Exemple: John" id="username" type="text" value="" />
+             <button id="btn-validate">VALIDER</button>
+          </div>
+       </div>
+
+        <div id="records-table">
+          <h3>Records précédemments établis</h3>
+          <p id="records-message"></p>
+          <table id="table">
+            <tr id="table-head">
+              <th id="id">Rang</th>
+              <th id="nom">Nom</th>
+              <th id="nb">Nb</th>
+              <th id="temps">Temps</th>
+            </tr>
+          </table>
+        </div>
       </div>
     </main>
   </body>
