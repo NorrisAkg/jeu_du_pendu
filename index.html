@@ -22,13 +22,58 @@
           disabled
           id="letter-input"
           placeholder="choisissez une lettre"
+          maxlength="1"
           type="text"
           maxlength="1"
         />
         <small id="letter-error"></small>
-        <div id="used-letters"><h4>Lettres déjà essayées : </h4><div class="content"></div></div>
-        <div id="penalities"><h4>Nombre de pénalités : </h4><div class="content"></div></div>
+
+        <!-- Letters already tried -->
+        <div id="used-letters">
+          <h4>Lettres déjà essayées :</h4>
+          <div class="content"></div>
+        </div>
+        <!-- End letters already tried -->
+
+        <!-- Penalities count space -->
+        <div id="penalities">
+          <h4>Nombre de pénalités :</h4>
+          <div class="content"></div>
+        </div>
+        <!-- End penalities count space -->
+
+        <!-- Players scores table -->
+        <div id="records-table">
+          <h3>Records précédemments établis</h3>
+          <p id="records-message"></p>
+          <table id="table">
+            <tr id="table-head">
+              <th id="id">Rang</th>
+              <th id="nom">Nom du joueur</th>
+              <th id="nb">Nbre de pénalités</th>
+            </tr>
+          </table>
+        </div>
+        <!-- End players scores table -->
+
+        <!-- Player name form -->
+        <div id="player-name">
+          <label for="username">Entrez votre nom</label>
+          <div id="player-name-form">
+            <input
+              placeholder="Exemple: John"
+              id="username"
+              type="text"
+              value=""
+            />
+            <button id="btn-validate">VALIDER</button>
+          </div>
+        </div>
+        <!-- End player name form -->
+
+        <!-- Game start button -->
         <button title="" id="start-btn">Commencer</button>
+        <!-- End game start button -->
       </div>
     </main>
   </body>
