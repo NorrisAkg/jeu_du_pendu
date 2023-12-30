@@ -102,12 +102,12 @@ $(document).ready(function () {
         console.log(lettersFound);
       });
       checkResult();
-      letterInput.val("");
+      // letterInput.val("");
     } else {
       penalities++;
       checkResult();
       $("#penalities .content").empty().append(`<span>${penalities}</span>`);
-      letterInput.val("");
+      // letterInput.val("");
     }
 
     $("#used-letters").css("display", "flex");
@@ -147,13 +147,13 @@ $(document).ready(function () {
     if (penalities === maxPenalities) {
       // Player loses
       $("#word").css("color", "rgb(192, 30, 30)");
-      letterInput.val("");
+      // letterInput.val("");
       letterInput.attr("disabled", true);
     } else {
       if (lettersFound.length === randomWord.length) {
         // Player win
         $("#word").css("color", "rgb(56, 187, 56)");
-        letterInput.val("");
+        // letterInput.val("");
         letterInput.attr("disabled", true);
       }
     }
