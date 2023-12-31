@@ -209,3 +209,30 @@ td.id, td {
   font-weight: bold;
   text-align: center;
 }
+
+#end-message {
+  display: none;
+  margin: 20px auto;
+  text-align: center;
+}
+
+#end-message #message {
+  display: inline-block;
+  background-color: rgba(56, 187, 56, 0.9);
+  /* background-color: rgba(192, 30, 30, 0.9); */
+  padding: 20px;
+  text-align: center;
+  color: #fff;
+  font-size: 30px;
+  font-weight: 500;
+  border: 5px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+#end-message p{
+  margin-top: 20px;
+}
+
+#end-message p small{
+  font-size: 16px;
+}

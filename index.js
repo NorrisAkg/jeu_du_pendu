@@ -26,6 +26,9 @@ $(document).ready(function () {
   const messageRecordsParagr = $("#records-message");
   const recordsTable = $("table");
   const head = $("#table-head");
+  const endMessageDiv = $("#end-message");
+  const endMessageContent = $("#message");
+  const restartText = $("#restart-text");
   let records = [];
   let orderedRecords = [];
 
@@ -39,6 +42,7 @@ $(document).ready(function () {
 
   function startPlaying() {
     letterInput.val("");
+    letterInput.css("display", "block");
     letterInput.css("cursor", "default");
     wordSpace.empty();
     $("#word").css("color", "#000");
@@ -49,9 +53,11 @@ $(document).ready(function () {
     $("#used-letters .content").empty();
     $("#used-letters").css("display", "none");
     recordsTableDiv.css("display", "none");
-    messageRecordsParagr.css("display", "none")
+    messageRecordsParagr.css("display", "none");
+    playerNameDiv.css("display", "none");
+    endMessageDiv.css("display", "none");
     let randomIndex = Math.floor(Math.random() * totalWords);
-    // let randomWord = words[randomIndex];
+    randomWord = words[randomIndex];
     randomWord = "Norris";
 
     // Add letter places
@@ -252,9 +258,16 @@ $(document).ready(function () {
       $("#word").css("color", "rgb(192, 30, 30)");
       // letterInput.val("");
       letterInput.attr("disabled", true);
+      letterInput.css("display", "none");
+      $("#used-letters").css("display", "none");
+      endMessageDiv.css("display", "block");
+      endMessageContent.text("Perdu !!");
+      endMessageContent.css("background-color", "rgba(192, 30, 30, 0.9)");
+      restartText.text("Vous aurez peut-être plus de chance la prochaine fois");
 
       startButton.text("Rejouer");
       startButton.css("display", "block");
+      startButton.css("cursor", "pointer");
       startButton.attr("disabled", false);
       startButton.css("background-color", "rgb(56, 187, 56)");
     } else {
@@ -264,9 +277,16 @@ $(document).ready(function () {
         playerNameDiv.css("display", "flex");
         // letterInput.val("");
         letterInput.attr("disabled", true);
+        letterInput.css("display", "none");
+        $("#used-letters").css("display", "none");
+        endMessageDiv.css("display", "block");
+        endMessageContent.text("Félicitations !!!");
+        endMessageContent.css("background-color", "rgba(56, 187, 56, 0.9)");
+        restartText.text("Vous avez trouvé le mot caché");
 
         startButton.text("Rejouer");
         startButton.css("display", "block");
+        startButton.css("cursor", "pointer");
         startButton.attr("disabled", false);
         startButton.css("background-color", "rgb(56, 187, 56)");
       }
