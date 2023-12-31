@@ -83,6 +83,7 @@ $(document).ready(function () {
     const player = new Player(nameInput.val(), penalities);
     playerNameDiv.css("display", "none");
     recordsTableDiv.css("display", "flex");
+    messageRecordsParagr.css("display", "block")
     messageRecordsParagr.text("Meilleurs scores !!!");
 
     // Reset values
