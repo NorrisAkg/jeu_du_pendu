@@ -1,5 +1,4 @@
 $(document).ready(function () {
-  console.log("document mounted");
   const words = [
     "Banane",
     "Poire",
@@ -40,19 +39,20 @@ $(document).ready(function () {
 
   function startPlaying() {
     letterInput.val("");
-    console.log("start");
+    letterInput.css("cursor", "default");
     wordSpace.empty();
     $("#word").css("color", "#000");
     penalities = 0;
     lettersFound.length = 0;
     lettersUsed.length = 0;
-    $("#penalities .content").empty();
+    $("#penalities .content").empty().append(`<span>${penalities}</span>`);
     $("#used-letters .content").empty();
     $("#used-letters").css("display", "none");
-    recordsTable.css("display", "none")
+    recordsTableDiv.css("display", "none");
+    messageRecordsParagr.css("display", "none")
     let randomIndex = Math.floor(Math.random() * totalWords);
     // let randomWord = words[randomIndex];
-    randomWord = "norris";
+    randomWord = "Norris";
 
     // Add letter places
     for (let i = 0; i < randomWord.length; i++) {
@@ -62,6 +62,7 @@ $(document).ready(function () {
     letterInput.attr("disabled", false);
     letterInput.focus();
     startButton.attr("disabled", true);
+    startButton.css("cursor", "not-allowed");
     startButton.css("background-color", "rgba(255, 255, 255, 0.6)");
   }
 
@@ -77,7 +78,6 @@ $(document).ready(function () {
     playerNameDiv.css("display", "none");
     recordsTableDiv.css("display", "flex");
     messageRecordsParagr.text("Meilleurs scores !!!");
-    console.log(records);
 
     // Reset values
     nameInput.val("");
@@ -85,25 +85,19 @@ $(document).ready(function () {
 
     if (localStorage.getItem("records") == null) {
       records.push(player);
-      console.log(records);
       localStorage.setItem("records", JSON.stringify(records));
     } else {
       records = [];
-      console.log(records);
       persistedRecords = JSON.parse(localStorage.getItem("records"));
-      console.log(records);
       records = [...persistedRecords, player];
-      console.log(records);
       localStorage.setItem("records", JSON.stringify(records));
     }
 
     sortRecords(records);
     previewRank(orderedRecords, player);
-    console.log(orderedRecords);
     fillRecordsTable(orderedRecords);
     records = [];
     orderedRecords = [];
-    console.log(records);
   }
 
   function previewRank(orderedRecords, player) {
@@ -149,13 +143,10 @@ $(document).ready(function () {
   }
 
   function fillRecordsTable(orderedRecords) {
-    console.log("fill records table");
-    recordsTable.empty();recordsTable
+    recordsTable.empty();
+    recordsTable;
     recordsTable.append(head);
 
-    console.log(recordsTable);
-
-    console.log(orderedRecords);
     orderedRecords.slice(0, 10).forEach(function (record) {
       addLine(orderedRecords.indexOf(record), record);
     });
@@ -169,9 +160,9 @@ $(document).ready(function () {
     const idColumn = $("<td>");
     idColumn.text(index + 1);
     const nameColumn = $("<td>");
-    nameColumn.text(record.username)
+    nameColumn.text(record.username);
     const nbColumn = $("<td>");
-    nbColumn.text( record.penalities);
+    nbColumn.text(record.penalities);
     // const timeColumn = $("<td>");
     // timeColumn.text(record.elapsedTime);
 
@@ -179,13 +170,9 @@ $(document).ready(function () {
     line.append(idColumn);
     line.append(nameColumn);
     line.append(nbColumn);
-    // line.append(timeColumn);
-
-    console.log(line)
 
     // Add line to table
     recordsTable.append(line);
-    console.log("line added")
   }
 
   // Display initial penalities count
@@ -193,8 +180,7 @@ $(document).ready(function () {
 
   letterInput.on("input", function (e) {
     letterError.css("display", "none");
-    let letter = e.target.value;
-    console.log(e.target.value);
+    let letter = e.target.value.toLowerCase();
     if (!letterInAlphabet(letter)) {
       letterError
         .text("Veuillez taper une lettre valide")
@@ -205,12 +191,8 @@ $(document).ready(function () {
     if (!lettersUsed.includes(letter)) {
       lettersUsed.push(letter);
     }
-    console.log(lettersUsed);
 
-    // if (letter) {
-    console.log(randomWord.indexOf(letter));
-
-    if (randomWord.includes(letter)) {
+    if (randomWord.toLowerCase().includes(letter)) {
       if (lettersFound.includes(letter)) {
         letterError
           .text("Cette lettre a déjà été trouvée")
@@ -232,12 +214,9 @@ $(document).ready(function () {
           return item != undefined;
         });
 
-      console.log(letterIndexes);
-
       letterIndexes.forEach(function (i) {
         lettersFound.push(letter);
         $(`.letter-${i}`).text(letter);
-        console.log(lettersFound);
       });
       checkResult();
       // letterInput.val("");
@@ -255,10 +234,6 @@ $(document).ready(function () {
         .append(`<span>${lettersUsed.join(" ")}</span>`);
     }
 
-    console.log(randomWord.indexOf(letter));
-    console.log(lettersFound);
-    // }
-
     checkResult();
   });
 
@@ -268,16 +243,10 @@ $(document).ready(function () {
    * @returns {Boolean}
    */
   function letterInAlphabet(letter) {
-    return alphabetList.includes(letter);
+    return alphabetList.includes(letter.toLowerCase());
   }
 
   function checkResult() {
-    console.log("checking");
-    console.log(randomWord);
-    console.log(lettersFound);
-    console.log(randomWord.length);
-    console.log(lettersFound.length);
-    console.log(lettersFound.length === randomWord.length);
     if (penalities === maxPenalities) {
       // TODO Player loses
       $("#word").css("color", "rgb(192, 30, 30)");
@@ -293,7 +262,6 @@ $(document).ready(function () {
         // TODO Player win
         $("#word").css("color", "rgb(56, 187, 56)");
         playerNameDiv.css("display", "flex");
-        console.log("success");
         // letterInput.val("");
         letterInput.attr("disabled", true);
 
@@ -314,17 +282,3 @@ const wordSpace = $("#word");
 let choosenLetter = "";
 let lettersFound = [];
 let totalWords = words.length;
-
-function startPlaying() {
-  console.log("start");
-  let randomIndex = Math.floor(Math.random() * totalWords);
-  // let randomWord = words[randomIndex];
-  let randomWord = "mandarine";
-
-  // Add letter places
-  for (let i = 0; i < randomWord.length; i++) {
-    wordSpace.append(`<span class='letter letter-${i}'>_</span>`);
-  }
-
-  startButton.attr("disabled", true);
-}
